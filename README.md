@@ -89,20 +89,24 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 </p>
 
 #### XML
-1. Bubble
+
+**1. Bubble**
 - `app:rsb_showBubble="true"`. Show or hide Bubble.
-2. TopText
+
+**2. TopText**
 - `app:rsb_topTextVisible="true"`. Show or hide TopText.
 - `app:rsb_topTextSize="16sp`. TopText size.
 - `app:rsb_textFollowDot="true"`. Text follow dot.
 - `app:rsb_textFollowRegionColor="true"`. Text color follow left/right color.
-3. ProgressBar
+
+**3. ProgressBar**
 - `app:rsb_barHeight="10dp"`. Bar Height.
 - `app:rsb_barBackgroundColor="@color/colorPrimary"`. Default ProgressBar background.
 - `app:rsb_leftColor="@color/colorAccent"`. Color Start ProgressBar.
 - `app:rsb_rightColor="@color/colorPrimary"`. Color End ProgressBar.
 - `app:rsb_smallDot="true"`. Dot Height = ProgressBarHeight.
-4. BottomText
+
+**4. BottomText**
 - `app:rsb_bottomTextVisible="true"`. Show or hide BottomText.
 - `app:rsb_bottomTextSize="16sp`. BottomText size.
 
@@ -112,13 +116,14 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 RangeSeekBar rangeSeekBar = findViewById(R.id.rsb);
 ```
 
-1. Bubble
-  - `soon`
-2. TopText
-  - `rangeSeekBar.setMin(100);`. MinValue ProgressBar.
-  - `rangeSeekBar.setMax(500);`. MinValue ProgressBar.
-  - `rangeSeekBar.setCurrentValue(250);`. Current Value ProgressBar. Trigger with `Onclick`.
-  - Custom Text Format
+1. Bubble**
+- `soon`
+
+2. TopText**
+- `rangeSeekBar.setMin(100);`. MinValue ProgressBar.
+- `rangeSeekBar.setMax(500);`. MinValue ProgressBar.
+- `rangeSeekBar.setCurrentValue(250);`. Current Value ProgressBar. Trigger with `Onclick`.
+- Custom Text Format
 ```java
 rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
     @Override
@@ -127,11 +132,13 @@ rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
     }
 });
 ```
-3. ProgressBar
-  - `soon`
-4. BottomText
-  - `rangeSeekBar.setTextMin("Min\nvalue");`. Min text description.
-  - `rangeSeekBar.setTextMan("Max\nvalue");`. Man text description.
+
+**3. ProgressBar**
+- `soon`
+
+**4. BottomText**
+- `rangeSeekBar.setTextMin("Min\nvalue");`. Min text description.
+- `rangeSeekBar.setTextMan("Max\nvalue");`. Man text description.
 
 ---
 # Example Code/App
