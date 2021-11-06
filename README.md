@@ -88,6 +88,7 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
   <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example3.jpg" width="400"/>
 </p>
 
+#
 #### XML
 
 **1. Bubble**
@@ -110,16 +111,17 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 - `app:rsb_bottomTextVisible="true"`. Show or hide BottomText.
 - `app:rsb_bottomTextSize="16sp`. BottomText size.
 
+#
 #### Programmatically
 
 ```java
 RangeSeekBar rangeSeekBar = findViewById(R.id.rsb);
 ```
 
-1. Bubble**
+**1. Bubble**
 - `soon`
 
-2. TopText**
+**2. TopText**
 - `rangeSeekBar.setMin(100);`. MinValue ProgressBar.
 - `rangeSeekBar.setMax(500);`. MinValue ProgressBar.
 - `rangeSeekBar.setCurrentValue(250);`. Current Value ProgressBar. Trigger with `Onclick`.
