@@ -1,18 +1,13 @@
 package com.gzeinnumer.easyrangeseekbar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gzeinnumer.ers.RangeSeekBar;
 import com.gzeinnumer.ers.callback.ListenerSeekBar;
 import com.gzeinnumer.ers.callback.TextFormatterSeekBar;
-import com.gzeinnumer.ers.helper.Step;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,16 +22,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init2() {
-        List<Step> steps = new ArrayList<>();
-//        steps.add(new Step("test", 100, Color.GREEN, Color.BLUE));
-//        steps.add(new Step("test", 100, Color.GREEN, Color.parseColor("#cccccc")));
-//        steps.add(new Step("test", 100, Color.GREEN, RangeSeekBar.defaultColor));
-        steps.add(new Step("test", 250, Color.GREEN, Color.RED));
         final RangeSeekBar rangeSeekBar = findViewById(R.id.rsb_2);
         rangeSeekBar.setMin(100);
         rangeSeekBar.setMax(500);
         rangeSeekBar.setCurrentValue(250);
-        rangeSeekBar.addStep(steps);
         rangeSeekBar.setTextMax("max\nvalue");
         rangeSeekBar.setTextMin("min\nvalue");
         rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
@@ -56,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private void init3() {
         final RangeSeekBar rangeSeekBar = (RangeSeekBar) findViewById(R.id.rsb_3);
         rangeSeekBar.setMax(5000);
-        rangeSeekBar.addStep(new Step("test", 3500, Color.RED, Color.BLUE));
 
     }
 
@@ -70,6 +58,5 @@ public class MainActivity extends AppCompatActivity {
                 return String.format("region %d : %d", region, (int) value);
             }
         });
-//        rangeSeekBar.addStep(new Step("test", 1500, Color.RED, Color.YELLOW));
     }
 }

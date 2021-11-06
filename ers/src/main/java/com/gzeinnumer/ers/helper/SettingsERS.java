@@ -13,13 +13,13 @@ import com.gzeinnumer.ers.RangeSeekBar;
 
 public class SettingsERS {
     private final RangeSeekBar rangeSeekBar;
-    public final Paint paintBar;
-    public final Paint paintIndicator;
+    private final Paint paintBar;
+    private final Paint paintIndicator;
     private final Paint paintStep;
-    public final TextPaint paintTextTop;
+    private final TextPaint paintTextTop;
     private final TextPaint paintTextBottom;
-    public final TextPaint paintBubbleTextCurrent;
-    public final Paint paintBubble;
+    private final TextPaint paintBubbleTextCurrent;
+    private final Paint paintBubble;
     private int colorBackground = Color.parseColor("#cccccc");
     private int colorStoppover = Color.BLACK;
     private int textColor = Color.parseColor("#6E6E6E");
@@ -40,7 +40,6 @@ public class SettingsERS {
     private boolean regions_centerText = true;
     private int regionColorLeft = Color.parseColor("#007E90");
     private int regionColorRight = Color.parseColor("#ed5564");
-//    private boolean editOnBubbleClick = true;
     private int bubbleColorEditing = Color.WHITE;
 
     public SettingsERS(RangeSeekBar rangeSeekBar) {
@@ -137,9 +136,6 @@ public class SettingsERS {
     }
 
     //sini
-    public Paint getPaintStep() {
-        return paintStep;
-    }
 
     public TextPaint getPaintTextTop() {
         return paintTextTop;
@@ -157,16 +153,8 @@ public class SettingsERS {
         return textSizeBubbleCurrent;
     }
 
-    public void setTextSizeBubbleCurrent(int textSizeBubbleCurrent) {
-        this.textSizeBubbleCurrent = textSizeBubbleCurrent;
-    }
-
     public float getBarHeight() {
         return barHeight;
-    }
-
-    public void setBarHeight(float barHeight) {
-        this.barHeight = barHeight;
     }
 
     public float getPaddingCorners() {
@@ -177,8 +165,104 @@ public class SettingsERS {
         this.paddingCorners = paddingCorners;
     }
 
+    public boolean isDrawTextOnTop() {
+        return drawTextOnTop;
+    }
+
+    public boolean isDrawTextOnBottom() {
+        return drawTextOnBottom;
+    }
+
+    public boolean isDrawBubble() {
+        return drawBubble;
+    }
+
+    public boolean isIndicatorInside() {
+        return indicatorInside;
+    }
+
+    public boolean isRegions_textFollowRegionColor() {
+        return regions_textFollowRegionColor;
+    }
+
+    public boolean isRegions_centerText() {
+        return regions_centerText;
+    }
+
+    public int getRegionColorLeft() {
+        return regionColorLeft;
+    }
+
+    public int getRegionColorRight() {
+        return regionColorRight;
+    }
+
+    public int getBubbleColorEditing() {
+        return bubbleColorEditing;
+    }
+
+    public Paint getPaintBar() {
+        return paintBar;
+    }
+
+    public Paint getPaintIndicator() {
+        return paintIndicator;
+    }
+
+    public RangeSeekBar getRangeSeekBar() {
+        return rangeSeekBar;
+    }
+
+    public Paint getPaintStep() {
+        return paintStep;
+    }
+
+    public TextPaint getPaintBubbleTextCurrent() {
+        return paintBubbleTextCurrent;
+    }
+
+    public Paint getPaintBubble() {
+        return paintBubble;
+    }
+
+    public int getColorStoppover() {
+        return colorStoppover;
+    }
+
+    public void setColorStoppover(int colorStoppover) {
+        this.colorStoppover = colorStoppover;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getTextTopSize() {
+        return textTopSize;
+    }
+
+    public int getTextBottomSize() {
+        return textBottomSize;
+    }
+
+    public void setTextSizeBubbleCurrent(int textSizeBubbleCurrent) {
+        this.textSizeBubbleCurrent = textSizeBubbleCurrent;
+    }
+
+    public void setBarHeight(float barHeight) {
+        this.barHeight = barHeight;
+    }
+
     public boolean isStep_colorizeAfterLast() {
         return step_colorizeAfterLast;
+    }
+
+    public void setStep_colorizeAfterLast(boolean step_colorizeAfterLast) {
+        this.step_colorizeAfterLast = step_colorizeAfterLast;
     }
 
     public boolean isStep_drawLines() {
@@ -197,64 +281,44 @@ public class SettingsERS {
         this.step_colorizeOnlyBeforeIndicator = step_colorizeOnlyBeforeIndicator;
     }
 
-    public boolean isDrawTextOnTop() {
-        return drawTextOnTop;
+    public void setDrawTextOnTop(boolean drawTextOnTop) {
+        this.drawTextOnTop = drawTextOnTop;
     }
 
-    public boolean isDrawTextOnBottom() {
-        return drawTextOnBottom;
+    public void setDrawTextOnBottom(boolean drawTextOnBottom) {
+        this.drawTextOnBottom = drawTextOnBottom;
     }
 
-    public boolean isDrawBubble() {
-        return drawBubble;
+    public void setDrawBubble(boolean drawBubble) {
+        this.drawBubble = drawBubble;
     }
 
     public boolean isModeRegion() {
         return modeRegion;
     }
 
-    public boolean isIndicatorInside() {
-        return indicatorInside;
+    public void setModeRegion(boolean modeRegion) {
+        this.modeRegion = modeRegion;
     }
 
     public void setIndicatorInside(boolean indicatorInside) {
         this.indicatorInside = indicatorInside;
     }
 
-    public boolean isRegions_textFollowRegionColor() {
-        return regions_textFollowRegionColor;
-    }
-
     public void setRegions_textFollowRegionColor(boolean regions_textFollowRegionColor) {
         this.regions_textFollowRegionColor = regions_textFollowRegionColor;
-    }
-
-    public boolean isRegions_centerText() {
-        return regions_centerText;
     }
 
     public void setRegions_centerText(boolean regions_centerText) {
         this.regions_centerText = regions_centerText;
     }
 
-    public int getRegionColorLeft() {
-        return regionColorLeft;
+    public void setRegionColorLeft(int regionColorLeft) {
+        this.regionColorLeft = regionColorLeft;
     }
 
-    public int getRegionColorRight() {
-        return regionColorRight;
-    }
-
-//    public boolean isEditOnBubbleClick() {
-//        return editOnBubbleClick;
-//    }
-//
-//    public void setEditOnBubbleClick(boolean editOnBubbleClick) {
-//        this.editOnBubbleClick = editOnBubbleClick;
-//    }
-
-    public int getBubbleColorEditing() {
-        return bubbleColorEditing;
+    public void setRegionColorRight(int regionColorRight) {
+        this.regionColorRight = regionColorRight;
     }
 
     public void setBubbleColorEditing(int bubbleColorEditing) {
