@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.gzeinnumer.ers.RangeSeekBar
+        android:id="@+id/rsb"
+        android:layout_width="250dp"
+        app:rsb_topTextVisible="true"
+        app:rsb_topTextSize="16sp"
+        app:rsb_textFollowDot="true"
+        app:rsb_barHeight="10dp"
+        app:rsb_smallDot="true"
+        app:rsb_leftColor="@color/colorAccent"
+        app:rsb_rightColor="@color/colorPrimary"
+        app:rsb_textFollowRegionColor="true"
+        app:rsb_barBackgroundColor="@color/colorPrimary"
+        android:layout_height="wrap_content" />
+</LinearLayout>

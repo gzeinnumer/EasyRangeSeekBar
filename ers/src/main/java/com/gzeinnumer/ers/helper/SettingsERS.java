@@ -28,8 +28,6 @@ public class SettingsERS {
     private int textSizeBubbleCurrent = 16;
     private float barHeight = 15;
     private float paddingCorners;
-    private boolean step_colorizeAfterLast = true;
-    private boolean step_drawLines = true;
     private boolean step_colorizeOnlyBeforeIndicator = true;
     private boolean drawTextOnTop = true;
     private boolean drawTextOnBottom = true;
@@ -37,7 +35,7 @@ public class SettingsERS {
     private boolean modeRegion = false;
     private boolean indicatorInside = false;
     private boolean regions_textFollowRegionColor = false;
-    private boolean regions_centerText = true;
+    private boolean regions_centerText = false;
     private int regionColorLeft = Color.parseColor("#007E90");
     private int regionColorRight = Color.parseColor("#ed5564");
     private int bubbleColorEditing = Color.WHITE;
@@ -87,9 +85,6 @@ public class SettingsERS {
         if (attrs != null) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RangeSeekBar);
             setColorBackground(a.getColor(R.styleable.RangeSeekBar_rsb_barBackgroundColor, colorBackground));
-
-            this.step_colorizeAfterLast = a.getBoolean(R.styleable.RangeSeekBar_rsb_disableEndColor, step_colorizeAfterLast);
-            this.step_drawLines = a.getBoolean(R.styleable.RangeSeekBar_rsb_showStepLine, step_drawLines);
 
             this.drawTextOnTop = a.getBoolean(R.styleable.RangeSeekBar_rsb_topTextVisible, drawTextOnTop);
             setTextTopSize(a.getDimensionPixelSize(R.styleable.RangeSeekBar_rsb_topTextSize, (int) dpToPx(textTopSize)));
@@ -209,119 +204,11 @@ public class SettingsERS {
         return paintIndicator;
     }
 
-    public RangeSeekBar getRangeSeekBar() {
-        return rangeSeekBar;
-    }
-
-    public Paint getPaintStep() {
-        return paintStep;
-    }
-
     public TextPaint getPaintBubbleTextCurrent() {
         return paintBubbleTextCurrent;
     }
 
     public Paint getPaintBubble() {
         return paintBubble;
-    }
-
-    public int getColorStoppover() {
-        return colorStoppover;
-    }
-
-    public void setColorStoppover(int colorStoppover) {
-        this.colorStoppover = colorStoppover;
-    }
-
-    public int getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(int textColor) {
-        this.textColor = textColor;
-    }
-
-    public int getTextTopSize() {
-        return textTopSize;
-    }
-
-    public int getTextBottomSize() {
-        return textBottomSize;
-    }
-
-    public void setTextSizeBubbleCurrent(int textSizeBubbleCurrent) {
-        this.textSizeBubbleCurrent = textSizeBubbleCurrent;
-    }
-
-    public void setBarHeight(float barHeight) {
-        this.barHeight = barHeight;
-    }
-
-    public boolean isStep_colorizeAfterLast() {
-        return step_colorizeAfterLast;
-    }
-
-    public void setStep_colorizeAfterLast(boolean step_colorizeAfterLast) {
-        this.step_colorizeAfterLast = step_colorizeAfterLast;
-    }
-
-    public boolean isStep_drawLines() {
-        return step_drawLines;
-    }
-
-    public void setStep_drawLines(boolean step_drawLines) {
-        this.step_drawLines = step_drawLines;
-    }
-
-    public boolean isStep_colorizeOnlyBeforeIndicator() {
-        return step_colorizeOnlyBeforeIndicator;
-    }
-
-    public void setStep_colorizeOnlyBeforeIndicator(boolean step_colorizeOnlyBeforeIndicator) {
-        this.step_colorizeOnlyBeforeIndicator = step_colorizeOnlyBeforeIndicator;
-    }
-
-    public void setDrawTextOnTop(boolean drawTextOnTop) {
-        this.drawTextOnTop = drawTextOnTop;
-    }
-
-    public void setDrawTextOnBottom(boolean drawTextOnBottom) {
-        this.drawTextOnBottom = drawTextOnBottom;
-    }
-
-    public void setDrawBubble(boolean drawBubble) {
-        this.drawBubble = drawBubble;
-    }
-
-    public boolean isModeRegion() {
-        return modeRegion;
-    }
-
-    public void setModeRegion(boolean modeRegion) {
-        this.modeRegion = modeRegion;
-    }
-
-    public void setIndicatorInside(boolean indicatorInside) {
-        this.indicatorInside = indicatorInside;
-    }
-
-    public void setRegions_textFollowRegionColor(boolean regions_textFollowRegionColor) {
-        this.regions_textFollowRegionColor = regions_textFollowRegionColor;
-    }
-
-    public void setRegions_centerText(boolean regions_centerText) {
-        this.regions_centerText = regions_centerText;
-    }
-
-    public void setRegionColorLeft(int regionColorLeft) {
-        this.regionColorLeft = regionColorLeft;
-    }
-
-    public void setRegionColorRight(int regionColorRight) {
-        this.regionColorRight = regionColorRight;
-    }
-
-    public void setBubbleColorEditing(int bubbleColorEditing) {
-        this.bubbleColorEditing = bubbleColorEditing;
     }
 }

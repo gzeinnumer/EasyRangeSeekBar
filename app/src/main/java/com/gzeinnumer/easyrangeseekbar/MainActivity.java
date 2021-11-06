@@ -1,5 +1,6 @@
 package com.gzeinnumer.easyrangeseekbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,9 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        startActivity(new Intent(getApplicationContext(), ExampleActivity.class));
         init2();
         init3();
         init4();
+        init5();
     }
 
     private void init2() {
@@ -56,6 +59,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public String format(int region, float value) {
                 return String.format("region %d : %d", region, (int) value);
+            }
+        });
+    }
+
+    private void init5() {
+        final RangeSeekBar rangeSeekBar = findViewById(R.id.rsb_5);
+        rangeSeekBar.setMin(0);
+        rangeSeekBar.setMax(500);
+        rangeSeekBar.setCurrentValue(250);
+        rangeSeekBar.setTextMax("max\nvalue");
+        rangeSeekBar.setTextMin("min\nvalue");
+        rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
+            @Override
+            public String format(float value) {
+                return String.format("Rp. %d", (int) value);
+            }
+        });
+        rangeSeekBar.setListener(new ListenerSeekBar() {
+            @Override
+            public void valueChanged(RangeSeekBar rangeSeekBar, float currentValue) {
+                Log.d("_TAG", "valueChanged: "+currentValue);
             }
         });
     }

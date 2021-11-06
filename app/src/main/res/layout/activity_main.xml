@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,17 +10,7 @@
     <com.gzeinnumer.ers.RangeSeekBar
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        app:rsb_barBackgroundColor="@color/colorAccent"
-        app:rsb_bottomTextSize="64sp"
-        app:rsb_bottomTextVisible="true"
-        app:rsb_disableEndColor="true"
-        app:rsb_leftColor="@color/purple_700"
-        app:rsb_rightColor="@color/teal_700"
         app:rsb_showBubble="true"
-        app:rsb_showStepLine="true"
-        app:rsb_textFollowDot="false"
         app:rsb_topTextVisible="true" />
 
     <com.gzeinnumer.ers.RangeSeekBar
@@ -56,9 +45,15 @@
         app:rsb_leftColor="@color/colorLeft"
         app:rsb_rightColor="@color/colorRight"
         app:rsb_showBubble="false"
-        app:rsb_showStepLine="false"
         app:rsb_smallDot="true"
         app:rsb_textFollowDot="true"
         app:rsb_textFollowRegionColor="true"
         tools:visibility="visible" />
+
+    <com.gzeinnumer.ers.RangeSeekBar
+        android:id="@+id/rsb_5"
+        android:layout_width="250dp"
+        app:rsb_textFollowDot="false"
+        app:rsb_leftColor="@color/purple_700"
+        android:layout_height="wrap_content" />
 </LinearLayout>
