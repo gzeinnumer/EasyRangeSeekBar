@@ -80,7 +80,8 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
   <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example4.jpg" width="400"/>
 </p>
 
-#
+---
+
 ### **SeekBar Customize**
 
 <p align="center">
@@ -89,21 +90,21 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 
 #### XML
 1. Bubble
-  - `app:rsb_showBubble="true"`. Show or hide Bubble.
+- `app:rsb_showBubble="true"`. Show or hide Bubble.
 2. TopText
-  - `app:rsb_topTextVisible="true"`. Show or hide TopText.
-  - `app:rsb_topTextSize="16sp`. TopText size.
-  - `app:rsb_textFollowDot="true"`. Text follow dot.
-  - `app:rsb_textFollowRegionColor="true"`. Text color follow left/right color.
+- `app:rsb_topTextVisible="true"`. Show or hide TopText.
+- `app:rsb_topTextSize="16sp`. TopText size.
+- `app:rsb_textFollowDot="true"`. Text follow dot.
+- `app:rsb_textFollowRegionColor="true"`. Text color follow left/right color.
 3. ProgressBar
-  - `app:rsb_barHeight="10dp"`. Bar Height.
-  - `app:rsb_barBackgroundColor="@color/colorPrimary"`. Default ProgressBar background.
-  - `app:rsb_leftColor="@color/colorAccent"`. Color Start ProgressBar.
-  - `app:rsb_rightColor="@color/colorPrimary"`. Color End ProgressBar.
-  - `app:rsb_smallDot="true"`. Dot Height = ProgressBarHeight.
+- `app:rsb_barHeight="10dp"`. Bar Height.
+- `app:rsb_barBackgroundColor="@color/colorPrimary"`. Default ProgressBar background.
+- `app:rsb_leftColor="@color/colorAccent"`. Color Start ProgressBar.
+- `app:rsb_rightColor="@color/colorPrimary"`. Color End ProgressBar.
+- `app:rsb_smallDot="true"`. Dot Height = ProgressBarHeight.
 4. BottomText
-  - `app:rsb_bottomTextVisible="true"`. Show or hide BottomText.
-  - `app:rsb_bottomTextSize="16sp`. BottomText size.
+- `app:rsb_bottomTextVisible="true"`. Show or hide BottomText.
+- `app:rsb_bottomTextSize="16sp`. BottomText size.
 
 #### Programmatically
 
