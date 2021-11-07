@@ -35,7 +35,6 @@ import com.gzeinnumer.ers.callback.ListenerSeekBar;
 import com.gzeinnumer.ers.callback.TextFormatterSeekBar;
 import com.gzeinnumer.ers.helper.EurosTextFormatterSeekBar;
 import com.gzeinnumer.ers.helper.SettingsERS;
-import com.gzeinnumer.ers.helper.Step;
 import com.gzeinnumer.ers.helper.TouchView;
 
 import java.util.ArrayList;
@@ -47,7 +46,6 @@ public class RangeSeekBar extends FrameLayout {
     private static final float DISTANCE_TEXT_BAR = 10;
     private static final float BUBBLE_PADDING_HORIZONTAL = 15;
     private static final float BUBBLE_PADDING_VERTICAL = 10;
-
     private static final float BUBBLE_ARROW_HEIGHT = 10;
     private static final float BUBBLE_ARROW_WIDTH = 10;
     boolean moving = false;
@@ -58,7 +56,6 @@ public class RangeSeekBar extends FrameLayout {
     private float min = 0;
     private float currentValue = 0;
     private float oldValue = Float.MIN_VALUE;
-    private List<Step> steps = new ArrayList<>();
     private float barY;
     private float barWidth;
     private float indicatorX;
@@ -224,23 +221,6 @@ public class RangeSeekBar extends FrameLayout {
 
     }
 
-    public void addStep(List<Step> steps) {
-        this.steps.addAll(steps);
-        Collections.sort(steps);
-        update();
-    }
-
-    public void addStep(Step step) {
-        this.steps.add(step);
-        Collections.sort(steps);
-        update();
-    }
-
-    public void clearSteps() {
-        this.steps.clear();
-        update();
-    }
-
     private View getScrollableParentView() {
         View view = this;
         while (view.getParent() != null && view.getParent() instanceof View) {
@@ -344,7 +324,7 @@ public class RangeSeekBar extends FrameLayout {
     }
 
     private boolean isRegions() {
-        return settingsERS.isModeRegion() || steps.isEmpty();
+        return true;
     }
 
     private void updateValues() {
@@ -378,12 +358,6 @@ public class RangeSeekBar extends FrameLayout {
             } else {
                 float topTextHeight = 0;
 
-                for (Step step : steps) {
-                    topTextHeight = Math.max(
-                            topTextHeight,
-                            calculateTextMultilineHeight(formatValue(step.getValue()), settingsERS.getPaintTextBottom())
-                    );
-                }
                 this.barY += topTextHeight;
             }
         } else {
@@ -402,11 +376,6 @@ public class RangeSeekBar extends FrameLayout {
             this.indicatorRadius = (int) (settingsERS.getBarHeight() * .9f);
         }
 
-        for (Step step : steps) {
-            final float stoppoverPercent = step.getValue() / (max - min);
-            step.setxStart(stoppoverPercent * barWidth);
-        }
-
         indicatorX = (currentValue - min) / (max - min) * barWidth;
 
         calculatedHieght = (int) (barCenterY + indicatorRadius);
@@ -418,38 +387,10 @@ public class RangeSeekBar extends FrameLayout {
                     calculateTextMultilineHeight(textMin, settingsERS.getPaintTextBottom())
             );
         }
-        for (Step step : steps) {
-            bottomTextHeight = Math.max(
-                    bottomTextHeight,
-                    calculateTextMultilineHeight(step.getName(), settingsERS.getPaintTextBottom())
-            );
-        }
 
         calculatedHieght += bottomTextHeight;
 
         calculatedHieght += 10; //padding bottom
-
-    }
-
-    private Step findStepBeforeCustor() {
-        for (int i = steps.size() - 1; i >= 0; i--) {
-            final Step step = steps.get(i);
-            if ((currentValue - min) >= step.getValue()) {
-                return step;
-            }
-            break;
-        }
-        return null;
-    }
-
-    private Step findStepOfCustor() {
-        for (int i = 0; i < steps.size(); ++i) {
-            final Step step = steps.get(i);
-            if ((currentValue - min) <= step.getValue()) {
-                return step;
-            }
-        }
-        return null;
     }
 
     public void setTextMax(String textMax) {
@@ -473,30 +414,8 @@ public class RangeSeekBar extends FrameLayout {
 
 
         if (isRegions()) {
-            if (steps.isEmpty()) {
-                settingsERS.paintIndicator.setColor(settingsERS.getRegionColorLeft());
-                settingsERS.paintBubble.setColor(settingsERS.getRegionColorLeft());
-            } else {
-                settingsERS.paintIndicator.setColor(settingsERS.getRegionColorRight());
-                settingsERS.paintBubble.setColor(settingsERS.getRegionColorRight());
-            }
-        } else {
-            final Step stepBeforeCustor = findStepOfCustor();
-            if (stepBeforeCustor != null) {
-                settingsERS.paintIndicator.setColor(stepBeforeCustor.getColorBefore());
-                settingsERS.paintBubble.setColor(stepBeforeCustor.getColorBefore());
-            } else {
-                if (settingsERS.isStep_colorizeAfterLast()) {
-                    final Step beforeCustor = findStepBeforeCustor();
-                    if (beforeCustor != null) {
-                        settingsERS.paintIndicator.setColor(beforeCustor.getColorAfter());
-                        settingsERS.paintBubble.setColor(beforeCustor.getColorAfter());
-                    }
-                } else {
-                    settingsERS.paintIndicator.setColor(settingsERS.getColorBackground());
-                    settingsERS.paintBubble.setColor(settingsERS.getColorBackground());
-                }
-            }
+            settingsERS.getPaintIndicator().setColor(settingsERS.getRegionColorLeft());
+            settingsERS.getPaintBubble().setColor(settingsERS.getRegionColorLeft());
         }
 
         final float radiusCorner = settingsERS.getBarHeight() / 2f;
@@ -506,57 +425,17 @@ public class RangeSeekBar extends FrameLayout {
         final float centerCircleLeft = paddingLeft;
         final float centerCircleRight = getWidth() - paddingRight;
 
-        //grey background
-        if (isRegions()) {
-            if (steps.isEmpty()) {
-                settingsERS.paintBar.setColor(settingsERS.getColorBackground());
-            } else {
-                settingsERS.paintBar.setColor(settingsERS.getRegionColorRight());
-            }
-        } else {
-            settingsERS.paintBar.setColor(settingsERS.getColorBackground());
-        }
-        canvas.drawCircle(centerCircleLeft, barCenterY, radiusCorner, settingsERS.paintBar);
-        canvas.drawCircle(centerCircleRight, barCenterY, radiusCorner, settingsERS.paintBar);
-        canvas.drawRect(centerCircleLeft, barY, centerCircleRight, barY + settingsERS.getBarHeight(), settingsERS.paintBar);
+        settingsERS.getPaintBar().setColor(settingsERS.getColorBackground());
+
+        canvas.drawCircle(centerCircleLeft, barCenterY, radiusCorner, settingsERS.getPaintBar());
+        canvas.drawCircle(centerCircleRight, barCenterY, radiusCorner, settingsERS.getPaintBar());
+        canvas.drawRect(centerCircleLeft, barY, centerCircleRight, barY + settingsERS.getBarHeight(), settingsERS.getPaintBar());
 
         if (isRegions()) {
-            settingsERS.paintBar.setColor(settingsERS.getRegionColorLeft());
+            settingsERS.getPaintBar().setColor(settingsERS.getRegionColorLeft());
 
-            canvas.drawCircle(centerCircleLeft, barCenterY, radiusCorner, settingsERS.paintBar);
-            canvas.drawRect(centerCircleLeft, barY, indicatorCenterX, barY + settingsERS.getBarHeight(), settingsERS.paintBar);
-        } else {
-            float lastX = centerCircleLeft;
-            boolean first = true;
-            for (Step step : steps) {
-                settingsERS.paintBar.setColor(step.getColorBefore());
-                if (first) {
-                    canvas.drawCircle(centerCircleLeft, barCenterY, radiusCorner, settingsERS.paintBar);
-                }
-
-                final float x = step.getxStart() + paddingLeft;
-                if (!settingsERS.isStep_colorizeOnlyBeforeIndicator()) {
-                    canvas.drawRect(lastX, barY, x, barY + settingsERS.getBarHeight(), settingsERS.paintBar);
-                } else {
-                    canvas.drawRect(lastX, barY, Math.min(x, indicatorCenterX), barY + settingsERS.getBarHeight(), settingsERS.paintBar);
-                }
-                lastX = x;
-
-                first = false;
-            }
-
-
-            if (settingsERS.isStep_colorizeAfterLast()) {
-                //find the step just below currentValue
-                for (int i = steps.size() - 1; i >= 0; i--) {
-                    final Step step = steps.get(i);
-                    if ((currentValue - min) > step.getValue()) {
-                        settingsERS.paintBar.setColor(step.getColorAfter());
-                        canvas.drawRect(step.getxStart() + paddingLeft, barY, indicatorCenterX, barY + settingsERS.getBarHeight(), settingsERS.paintBar);
-                        break;
-                    }
-                }
-            }
+            canvas.drawCircle(centerCircleLeft, barCenterY, radiusCorner, settingsERS.getPaintBar());
+            canvas.drawRect(centerCircleLeft, barY, indicatorCenterX, barY + settingsERS.getBarHeight(), settingsERS.getPaintBar());
         }
 
         if (settingsERS.isDrawTextOnTop()) {
@@ -574,7 +453,7 @@ public class RangeSeekBar extends FrameLayout {
                 }
 
                 if (settingsERS.isRegions_textFollowRegionColor()) {
-                    settingsERS.paintTextTop.setColor(settingsERS.getRegionColorLeft());
+                    settingsERS.getPaintTextTop().setColor(settingsERS.getRegionColorLeft());
                 }
 
                 float textX;
@@ -584,10 +463,10 @@ public class RangeSeekBar extends FrameLayout {
                     textX = paddingLeft;
                 }
 
-                drawIndicatorsTextAbove(canvas, formatRegionValue(0, leftValue), settingsERS.paintTextTop, textX, textY, Layout.Alignment.ALIGN_CENTER);
+                drawIndicatorsTextAbove(canvas, formatRegionValue(0, leftValue), settingsERS.getPaintTextTop(), textX, textY, Layout.Alignment.ALIGN_CENTER);
 
                 if (settingsERS.isRegions_textFollowRegionColor()) {
-                    settingsERS.paintTextTop.setColor(settingsERS.getRegionColorRight());
+                    settingsERS.getPaintTextTop().setColor(settingsERS.getRegionColorRight());
                 }
 
                 if (settingsERS.isRegions_centerText()) {
@@ -595,28 +474,14 @@ public class RangeSeekBar extends FrameLayout {
                 } else {
                     textX = paddingLeft + barWidth;
                 }
-                drawIndicatorsTextAbove(canvas, formatRegionValue(1, rightValue), settingsERS.paintTextTop, textX, textY, Layout.Alignment.ALIGN_CENTER);
+                drawIndicatorsTextAbove(canvas, formatRegionValue(1, rightValue), settingsERS.getPaintTextTop(), textX, textY, Layout.Alignment.ALIGN_CENTER);
             } else {
-                drawIndicatorsTextAbove(canvas, formatValue(min), settingsERS.paintTextTop, 0 + paddingLeft, textY, Layout.Alignment.ALIGN_CENTER);
-                for (Step step : steps) {
-                    drawIndicatorsTextAbove(canvas, formatValue(step.getValue()), settingsERS.paintTextTop, step.getxStart() + paddingLeft, textY, Layout.Alignment.ALIGN_CENTER);
-                }
-                drawIndicatorsTextAbove(canvas, formatValue(max), settingsERS.paintTextTop, canvas.getWidth(), textY, Layout.Alignment.ALIGN_CENTER);
+                drawIndicatorsTextAbove(canvas, formatValue(min), settingsERS.getPaintTextTop(), 0 + paddingLeft, textY, Layout.Alignment.ALIGN_CENTER);
+                drawIndicatorsTextAbove(canvas, formatValue(max), settingsERS.getPaintTextTop(), canvas.getWidth(), textY, Layout.Alignment.ALIGN_CENTER);
             }
         }
 
         final float bottomTextY = barY + settingsERS.getBarHeight() + 15;
-
-        for (Step step : steps) {
-            if (settingsERS.isStep_drawLines()) {
-                canvas.drawLine(step.getxStart() + paddingLeft, barY - settingsERS.getBarHeight() / 4f, step.getxStart() + paddingLeft, barY + settingsERS.getBarHeight() + settingsERS.getBarHeight() / 4f, settingsERS.getPaintStep());
-            }
-
-            if (settingsERS.isDrawTextOnBottom()) {
-                //drawMultilineText(canvas, maxText, canvas.getWidth() - settings.paintText.measureText(maxText), textY, settings.paintText, Layout.Alignment.ALIGN_OPPOSITE);
-                drawMultilineText(canvas, step.getName(), step.getxStart() + paddingLeft, bottomTextY, settingsERS.getPaintTextBottom(), Layout.Alignment.ALIGN_CENTER);
-            }
-        }
 
         if (settingsERS.isDrawTextOnBottom()) {
             if (!TextUtils.isEmpty(textMax)) {
@@ -628,11 +493,11 @@ public class RangeSeekBar extends FrameLayout {
             }
         }
 
-        final int color = settingsERS.paintIndicator.getColor();
-        canvas.drawCircle(indicatorCenterX, this.barCenterY, indicatorRadius, settingsERS.paintIndicator);
-        settingsERS.paintIndicator.setColor(Color.WHITE);
-        canvas.drawCircle(indicatorCenterX, this.barCenterY, indicatorRadius * 0.85f, settingsERS.paintIndicator);
-        settingsERS.paintIndicator.setColor(color);
+        final int color = settingsERS.getPaintIndicator().getColor();
+        canvas.drawCircle(indicatorCenterX, this.barCenterY, indicatorRadius, settingsERS.getPaintIndicator());
+        settingsERS.getPaintIndicator().setColor(Color.WHITE);
+        canvas.drawCircle(indicatorCenterX, this.barCenterY, indicatorRadius * 0.85f, settingsERS.getPaintIndicator());
+        settingsERS.getPaintIndicator().setColor(color);
 
         if (settingsERS.isDrawBubble()) {
             float bubbleCenterX = indicatorCenterX;
@@ -738,7 +603,7 @@ public class RangeSeekBar extends FrameLayout {
         if (isEditing) {
             bubbleText = textEditing;
         }
-        return settingsERS.paintBubbleTextCurrent.measureText(bubbleText);
+        return settingsERS.getPaintBubbleTextCurrent().measureText(bubbleText);
     }
 
     private void drawBubblePath(Canvas canvas, float triangleCenterX, float height, float width) {
@@ -747,7 +612,6 @@ public class RangeSeekBar extends FrameLayout {
         int padding = 3;
         final Rect rect = new Rect(padding, padding, (int) width - padding, (int) (height - dpToPx(BUBBLE_ARROW_HEIGHT)) - padding);
 
-//        final float roundRectHeight = (height - dpToPx(BUBBLE_ARROW_HEIGHT)) / 3;
         final float roundRectHeight = dpToPx(10);
 
         path.moveTo(rect.left + roundRectHeight, rect.top);
@@ -766,7 +630,7 @@ public class RangeSeekBar extends FrameLayout {
         path.quadTo(rect.left, rect.top, rect.left + roundRectHeight, rect.top);
         path.close();
 
-        canvas.drawPath(path, settingsERS.paintBubble);
+        canvas.drawPath(path, settingsERS.getPaintBubble());
     }
 
     private void drawBubble(Canvas canvas, float centerX, float triangleCenterX, float y) {
@@ -781,23 +645,23 @@ public class RangeSeekBar extends FrameLayout {
         if (!isEditing) {
             drawBubblePath(canvas, triangleCenterX, height, width);
         } else {
-            final int savedColor = settingsERS.paintBubble.getColor();
+            final int savedColor = settingsERS.getPaintBubble().getColor();
 
-            settingsERS.paintBubble.setColor(settingsERS.getBubbleColorEditing());
-            settingsERS.paintBubble.setStyle(Paint.Style.FILL);
+            settingsERS.getPaintBubble().setColor(settingsERS.getBubbleColorEditing());
+            settingsERS.getPaintBubble().setStyle(Paint.Style.FILL);
             drawBubblePath(canvas, triangleCenterX, height, width);
 
-            settingsERS.paintBubble.setStyle(Paint.Style.STROKE);
-            settingsERS.paintBubble.setColor(settingsERS.paintIndicator.getColor());
+            settingsERS.getPaintBubble().setStyle(Paint.Style.STROKE);
+            settingsERS.getPaintBubble().setColor(settingsERS.getPaintIndicator().getColor());
             drawBubblePath(canvas, triangleCenterX, height, width);
 
-            settingsERS.paintBubble.setStyle(Paint.Style.FILL);
-            settingsERS.paintBubble.setColor(savedColor);
+            settingsERS.getPaintBubble().setStyle(Paint.Style.FILL);
+            settingsERS.getPaintBubble().setColor(savedColor);
         }
 
         if (!isEditing) {
             final String bubbleText = formatValue(getCurrentValue());
-            drawText(canvas, bubbleText, dpToPx(BUBBLE_PADDING_HORIZONTAL), dpToPx(BUBBLE_PADDING_VERTICAL) - 3, settingsERS.paintBubbleTextCurrent, Layout.Alignment.ALIGN_NORMAL);
+            drawText(canvas, bubbleText, dpToPx(BUBBLE_PADDING_HORIZONTAL), dpToPx(BUBBLE_PADDING_VERTICAL) - 3, settingsERS.getPaintBubbleTextCurrent(), Layout.Alignment.ALIGN_NORMAL);
         }
 
         canvas.restore();
