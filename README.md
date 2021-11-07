@@ -180,6 +180,8 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 });
 ```
 
+#
+
 - Example 2
 
 <p align="center">
@@ -202,7 +204,6 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 ```java
 RangeSeekBar rangeSeekBar = (RangeSeekBar) findViewById(R.id.rsb);
 rangeSeekBar.setMax(3000);
-rangeSeekBar.setCurrentValue(1500);
 rangeSeekBar.setRegionTextFormatter(new RangeSeekBar.RegionTextFormatter() {
     @Override
     public String format(int region, float value) {
