@@ -145,23 +145,80 @@ rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
 ---
 
 ### **Preview Customize**
+
+- Example 1
+
 <p align="center">
   <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example5.jpg" width="400"/>
 </p>
+
+```xml
+<com.gzeinnumer.ers.RangeSeekBar
+    android:id="@+id/rsb"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    app:rsb_leftColor="@color/colorLeft" />
+```
+```java
+final RangeSeekBar rangeSeekBar = findViewById(R.id.rsb);
+rangeSeekBar.setMin(100);
+rangeSeekBar.setMax(500);
+rangeSeekBar.setCurrentValue(250);
+rangeSeekBar.setTextMax("max\nvalue");
+rangeSeekBar.setTextMin("min\nvalue");
+rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
+    @Override
+    public String format(float value) {
+        return String.format("Rp. %d", (int) value);
+    }
+});
+rangeSeekBar.setListener(new ListenerSeekBar() {
+    @Override
+    public void valueChanged(RangeSeekBar rangeSeekBar, float currentValue) {
+        Log.d("_TAG", "valueChanged: "+currentValue);
+    }
+});
+```
+
+- Example 2
+
 <p align="center">
   <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example6.jpg" width="400"/>
 </p>
 
+```xml
+<com.gzeinnumer.ers.RangeSeekBar
+    android:id="@+id/rsb"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:rsb_leftColor="@color/colorLeft"
+    app:rsb_rightColor="@color/colorRight"
+    app:rsb_showBubble="false"
+    app:rsb_smallDot="true"
+    app:rsb_textFollowDot="true"
+    app:rsb_textFollowRegionColor="true"/>
+```
+```java
+RangeSeekBar rangeSeekBar = (RangeSeekBar) findViewById(R.id.rsb);
+rangeSeekBar.setMax(3000);
+rangeSeekBar.setCurrentValue(1500);
+rangeSeekBar.setRegionTextFormatter(new RangeSeekBar.RegionTextFormatter() {
+    @Override
+    public String format(int region, float value) {
+        return String.format("region %d : %d", region, (int) value);
+    }
+});
+```
+
 ---
 # Example Code/App
 
-[]()
-
-[Sample Code And App](https://github.com/gzeinnumer/Example)
+[Sample Code And App](https://github.com/gzeinnumer/EasyRangeSeekBarExample)
 
 ---
 # Version
-- **0.3.0**
+- **1.0.0**
   - First Release
 
 ---
