@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/gzeinnumer/MyLibUtils/blob/master/preview/bg.jpg"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example1.jpg" width="400"/>
 </p>
 
 <h1 align="center">
