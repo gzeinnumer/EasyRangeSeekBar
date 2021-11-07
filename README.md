@@ -215,6 +215,9 @@ rangeSeekBar.setRegionTextFormatter(new RangeSeekBar.RegionTextFormatter() {
 ---
 # Example Code/App
 
+[MainActivity.java](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/app/src/main/java/com/gzeinnumer/easyrangeseekbar/MainActivity.java)
+[activity_main.xml](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/app/src/main/res/layout/activity_main.xml)
+
 [Sample Code And App](https://github.com/gzeinnumer/EasyRangeSeekBarExample)
 
 ---
