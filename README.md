@@ -143,6 +143,16 @@ rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
 - `rangeSeekBar.setTextMan("Max\nvalue");`. Man text description.
 
 ---
+
+### **Preview Customize**
+<p align="center">
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example5.jpg" width="400"/>
+</p>
+<p align="center">
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example6.jpg" width="400"/>
+</p>
+
+---
 # Example Code/App
 
 []()
