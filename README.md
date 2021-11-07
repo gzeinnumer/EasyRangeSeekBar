@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example1.jpg" width="400"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/preview/example1.jpg" width="400"/>
 </p>
 
 <h1 align="center">
@@ -48,11 +48,16 @@ dependencies {
 
 ---
 # Feature List
-- [x] []()
+
+- [x] [ProgressBar](https://developer.android.com/reference/android/widget/ProgressBar)
+- [x] MinValue
+- [x] MaxValue
+- [x] Region
+- [x] Bubble
 
 ---
 # Tech stack and 3rd library
-- []()
+- [android-slidr](https://github.com/florent37/android-slidr). Thanks To `florent37`.
 
 ---
 # Usage
@@ -77,7 +82,7 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 });
 ```
 <p align="center">
-  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example4.jpg" width="400"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/preview/example4.jpg" width="400"/>
 </p>
 
 ---
@@ -85,7 +90,7 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 ### **SeekBar Customize**
 
 <p align="center">
-  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example3.jpg" width="400"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/preview/example3.jpg" width="400"/>
 </p>
 
 #
@@ -149,7 +154,7 @@ rangeSeekBar.setTextFormatter(new TextFormatterSeekBar() {
 - Example 1
 
 <p align="center">
-  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example5.jpg" width="400"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/preview/example5.jpg" width="400"/>
 </p>
 
 ```xml
@@ -185,7 +190,7 @@ rangeSeekBar.setListener(new ListenerSeekBar() {
 - Example 2
 
 <p align="center">
-  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/preview/example6.jpg" width="400"/>
+  <img src="https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/preview/example6.jpg" width="400"/>
 </p>
 
 ```xml
@@ -215,8 +220,8 @@ rangeSeekBar.setRegionTextFormatter(new RangeSeekBar.RegionTextFormatter() {
 ---
 # Example Code/App
 
-[MainActivity.java](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/app/src/main/java/com/gzeinnumer/easyrangeseekbar/MainActivity.java)
-[activity_main.xml](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/remove-step-v2/app/src/main/res/layout/activity_main.xml)
+[MainActivity.java](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/app/src/main/java/com/gzeinnumer/easyrangeseekbar/MainActivity.java)
+[activity_main.xml](https://github.com/gzeinnumer/EasyRangeSeekBar/blob/master/app/src/main/res/layout/activity_main.xml)
 
 [Sample Code And App](https://github.com/gzeinnumer/EasyRangeSeekBarExample)
 
